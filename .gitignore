@@ -3,3 +3,5 @@ EcoStrike4.sln
 /Logs
 /Library
 /obj
+.vsconfig
+.vs/EcoStrike4
