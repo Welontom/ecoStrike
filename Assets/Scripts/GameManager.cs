@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI winText;
     public Button startButton;
     public Button restartButton;
+    public Button menuButton;
     public TextMeshProUGUI tempoText;
 
     // Controle do jogo
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         winText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(true);
+
 
         vidaBossAtual = vidaBossTotal;
         tempoRestante = tempoLimite;
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
         jogoComecou = true;
         startText.gameObject.SetActive(false);
         startButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
         spawner.IniciarSpawn(); // Começa a spawnar objetos
     }
 
@@ -135,10 +139,11 @@ public class GameManager : MonoBehaviour
         // 'Despausa' o jogo
         Time.timeScale = 1f;
 
-        // Esconde textos e botão de reinício
+        // Esconde textos e botões
         gameOverText.gameObject.SetActive(false);
         winText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
 
         audioManager.clip = FundoMusic;
         audioManager.Play();
@@ -156,6 +161,7 @@ public class GameManager : MonoBehaviour
         // Mostra tela de game over
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
+        menuButton.gameObject.SetActive(true);
 
         LimparObjetosSpawnados();
 
@@ -173,6 +179,7 @@ public class GameManager : MonoBehaviour
         // Mostra tela de vitória
         winText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(true);
         startText.gameObject.SetActive(false);
 
         LimparObjetosSpawnados();
@@ -183,5 +190,17 @@ public class GameManager : MonoBehaviour
         audioManager.loop = false;
         Time.timeScale = 0f; // Pausa o jogo
         
+    }
+
+    public void VoltarParaMenu()
+    {
+        // Despausa o jogo, se estiver pausado
+        Time.timeScale = 1f;
+
+        // Esconde tela home
+        GameData.esconderHome = true;
+
+        // Carrega a cena do menu principal
+        SceneManager.LoadScene("Home");
     }
 }
