@@ -3770,7 +3770,7 @@ MonoBehaviour:
   menuButton: {fileID: 767960938}
   tempoText: {fileID: 1334014277}
   jogoComecou: 0
-  tempoLimite: 45
+  tempoLimite: 60
   audioManager: {fileID: 1790707061}
   winMusic: {fileID: 8300000, guid: bbed11bca0f401244ab58ca232efcc9a, type: 3}
   FundoMusic: {fileID: 8300000, guid: 3c0a43a04d169034c90fac6b77333c88, type: 3}

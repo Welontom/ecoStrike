@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,11 +10,15 @@ public class PlayerHealth : MonoBehaviour
     public int maxLives = 3;              // Quantidade máxima de vidas
     private int currentLives;             // Vidas atuais do jogador
     public Image[] hearts;                // Imagens dos corações na UI
-    bool invencible; 
+    public bool invencible; 
     public float blinkDuration = 1f;
     public float blinkInterval = 0.1f;
     private Renderer characterRenderer;
     private GameManager gameManager;
+
+    public Image skillimage;
+    public float cooldown = 10f;
+    public float lastUsedTime = -Mathf.Infinity;
 
     // Start is called before the first frame update
 
@@ -23,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
         currentLives = maxLives;       // Inicia com todas as vidas
         UpdateHearts();                // Atualiza a UI dos corações
         invencible = false;
+
     }
 
     public void TakeDamage()
@@ -30,9 +37,12 @@ public class PlayerHealth : MonoBehaviour
         // Se já está sem vidas, não faz nada
         if (currentLives <= 0) return;
 
-        currentLives--;
-        UpdateHearts();
-
+        if(invencible == false)
+        {
+            currentLives--;
+            UpdateHearts();
+        }
+        
         // Se zerou as vidas, chama Game Over
         if (currentLives <= 0)
         {
@@ -52,7 +62,14 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level2" && Time.time >= lastUsedTime + cooldown)
+        {
+            StartCoroutine(Invencibilidade(2f));
+            lastUsedTime = Time.time;
+        }
+
+
+        AtualizarCooldown();
     }
     private void OnParticleCollision(GameObject other)
     {
@@ -60,17 +77,17 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("explosion") && invencible == false)
         {
             TakeDamage();
-            StartCoroutine(Invencibilidade()); // Inicia o efeito de invencibilidade temporária
+            StartCoroutine(Invencibilidade(blinkDuration)); // Inicia o efeito de invencibilidade temporária
         }
         
     }
-    IEnumerator Invencibilidade() 
+    IEnumerator Invencibilidade(float duration) 
     {
         invencible = true;
         float timer = 0f;
 
         // Enquanto estiver no tempo de invencibilidade, pisca o personagem
-        while (timer < blinkDuration)
+        while (timer < duration)
         {
             characterRenderer.enabled = false;
             yield return new WaitForSecondsRealtime(blinkInterval / 2f);
@@ -88,6 +105,18 @@ public class PlayerHealth : MonoBehaviour
     {
         currentLives = maxLives;
         UpdateHearts();
+    }
+    public void AtualizarCooldown() 
+    {
+        float tempoRestante = (lastUsedTime + cooldown) - Time.time;
+        if (tempoRestante <= 0)
+        {
+            skillimage.enabled = true;
+        }
+        else
+        {
+            skillimage.enabled = false;
+        }
     }
 
 }

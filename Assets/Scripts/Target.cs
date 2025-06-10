@@ -9,7 +9,7 @@ public class Target : MonoBehaviour
     private Rigidbody targetRb;
 
     // Objeto que define o ponto de spawn (posição inicial)
-    public GameObject spawn;
+    private GameObject spawn;
 
     private float minSpeed = 12f;
     private float maxSpeed = 13f;
@@ -18,6 +18,7 @@ public class Target : MonoBehaviour
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
+        spawn = GameObject.Find("The Boss");
 
         // Aplica força inicial em direção aleatória para frente
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);

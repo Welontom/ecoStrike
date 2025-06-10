@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float verticalInput;
     public float speed = 10.0f;
 
-    private CharacterController controller;
-    private Animator animator;
+    public CharacterController controller;
+    public Animator animator;
 
     public bool isHolding;  // Se o jogador está segurando um lixo
     public bool paper;
@@ -17,11 +18,11 @@ public class PlayerController : MonoBehaviour
     public bool glass;
     public bool plastic;
 
-    private GameManager gameManager; // Referência ao GameManager
-    private ParticleSystem explosionParticle;
+    public GameManager gameManager; // Referência ao GameManager
+    public ParticleSystem explosionParticle;
 
     public AudioClip hitSound;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
 
 
