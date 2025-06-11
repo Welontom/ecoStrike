@@ -20,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
     public float cooldown = 10f;
     public float lastUsedTime = -Mathf.Infinity;
 
+    public float distanciaTeleporte = 10f;
+
+    public ParticleSystem explosionParticle;
     // Start is called before the first frame update
 
     void Start()
@@ -67,6 +70,12 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(Invencibilidade(2f));
             lastUsedTime = Time.time;
         }
+        if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level3" && Time.time >= lastUsedTime + cooldown)
+        {
+            TeleportarParaFrente();
+            lastUsedTime = Time.time;
+        }
+
 
 
         AtualizarCooldown();
@@ -117,6 +126,19 @@ public class PlayerHealth : MonoBehaviour
         {
             skillimage.enabled = false;
         }
+    }
+    void TeleportarParaFrente()
+    {
+        Vector3 direcao = transform.forward;
+        Vector3 destino = transform.position + direcao * distanciaTeleporte;
+
+
+        GetComponent<CharacterController>().enabled = false;
+        explosionParticle = Resources.Load<ParticleSystem>("Explosion_blue");
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        transform.position = destino;
+        GetComponent<CharacterController>().enabled = true;
+        Debug.Log("Teleporte realizado!");
     }
 
 }

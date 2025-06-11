@@ -2728,6 +2728,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 841552573}
+    - target: {fileID: 822388159490655297, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1759777928}
     - target: {fileID: 1177614809024314527, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
       propertyPath: m_Name
       value: kaya
@@ -3195,7 +3199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -369, y: -161}
+  m_AnchoredPosition: {x: -422, y: -175}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1278204136
