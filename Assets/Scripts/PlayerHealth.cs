@@ -22,6 +22,10 @@ public class PlayerHealth : MonoBehaviour
 
     public float distanciaTeleporte = 10f;
 
+    public float raioDeAtracao = 30f;
+    public float forcaDeAtracao = 30f;
+    public float duracaoDoIma = 1f;
+  
     public ParticleSystem explosionParticle;
     // Start is called before the first frame update
 
@@ -73,6 +77,11 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level3" && Time.time >= lastUsedTime + cooldown)
         {
             TeleportarParaFrente();
+            lastUsedTime = Time.time;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level5" && Time.time >= lastUsedTime + cooldown)
+        {
+            StartCoroutine(AtivarImã());
             lastUsedTime = Time.time;
         }
 
@@ -139,6 +148,45 @@ public class PlayerHealth : MonoBehaviour
         transform.position = destino;
         GetComponent<CharacterController>().enabled = true;
         Debug.Log("Teleporte realizado!");
+    }
+    IEnumerator AtivarImã()
+    {
+        float tempo = 0f;
+        
+        while (tempo < duracaoDoIma)
+        {
+            AtrairLixos();
+            Debug.Log(tempo);
+            tempo += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+    void AtrairLixos()
+    {
+        Collider[] lixos = Physics.OverlapSphere(transform.position, raioDeAtracao);
+
+        foreach (Collider col in lixos)
+        {
+            if (col.CompareTag("vidro") || col.CompareTag("plastico") || col.CompareTag("metal") || col.CompareTag("papel"))
+            {
+                Rigidbody rb = col.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Vector3 direcao = (transform.position - col.transform.position).normalized;
+                    rb.AddForce(direcao * forcaDeAtracao, ForceMode.Acceleration);
+                }
+                else
+                {
+                    // alternativa: mover diretamente se não tiver Rigidbody
+                    col.transform.position = Vector3.MoveTowards(
+                        col.transform.position,
+                        transform.position,
+                        forcaDeAtracao * Time.deltaTime
+                    );
+                }
+            }
+        }
     }
 
 }
