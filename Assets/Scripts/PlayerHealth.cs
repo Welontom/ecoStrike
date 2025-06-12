@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,7 +25,10 @@ public class PlayerHealth : MonoBehaviour
     public float raioDeAtracao = 30f;
     public float forcaDeAtracao = 30f;
     public float duracaoDoIma = 1f;
-  
+
+    public float raioDeRepulsao = 10f;
+    public float forcaDeRepulsao = 50f;
+
     public ParticleSystem explosionParticle;
     // Start is called before the first frame update
 
@@ -77,6 +80,11 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level3" && Time.time >= lastUsedTime + cooldown)
         {
             TeleportarParaFrente();
+            lastUsedTime = Time.time;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level4" && Time.time >= lastUsedTime + cooldown)
+        {
+            RepelirBombas();
             lastUsedTime = Time.time;
         }
         if (Input.GetKeyDown(KeyCode.E) && SceneManager.GetActiveScene().name == "Level5" && Time.time >= lastUsedTime + cooldown)
@@ -187,6 +195,25 @@ public class PlayerHealth : MonoBehaviour
                 }
             }
         }
+    }
+    void RepelirBombas()
+    {
+        Collider[] bombas = Physics.OverlapSphere(transform.position, raioDeRepulsao);
+
+        foreach (Collider col in bombas)
+        {
+            if (col.CompareTag("Bomb"))
+            {
+                Rigidbody rb = col.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Vector3 direcao = (col.transform.position - transform.position).normalized;
+                    rb.AddForce(direcao * forcaDeRepulsao, ForceMode.Impulse);
+                }
+            }
+        }
+        explosionParticle = Resources.Load<ParticleSystem>("Explosion_red");
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
     }
 
 }

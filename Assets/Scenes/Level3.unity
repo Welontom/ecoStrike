@@ -1024,6 +1024,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 75674466}
     - target: {fileID: 7295854084156453756, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
+      propertyPath: distanciaTeleporte
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295854084156453756, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 1254314666}
@@ -1610,7 +1614,7 @@ Transform:
   m_GameObject: {fileID: 529070165}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0, z: -7.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1835,13 +1839,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598880367}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11595129, y: -0, z: -0, w: 0.9932549}
-  m_LocalPosition: {x: 48.9, y: 69.3, z: -9.5}
+  m_LocalRotation: {x: 0.19136468, y: -0, z: -0, w: 0.98151904}
+  m_LocalPosition: {x: 49.6, y: 69.9, z: -9.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 13.317, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.065, y: 0, z: 0}
 --- !u!1 &640627781
 GameObject:
   m_ObjectHideFlags: 0

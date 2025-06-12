@@ -2779,7 +2779,7 @@ PrefabInstance:
     - target: {fileID: 7295854084156453756, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
       propertyPath: skillimage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1653088748}
     - target: {fileID: 7295854084156453756, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 

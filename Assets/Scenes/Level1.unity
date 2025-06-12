@@ -4122,6 +4122,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295854084156453756, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
+      propertyPath: skillimage
+      value: 
+      objectReference: {fileID: 1200055950}
+    - target: {fileID: 7295854084156453756, guid: 099a8f25a9f13834690c0905baeedf1f, type: 3}
       propertyPath: characterRenderer
       value: 
       objectReference: {fileID: 4514714261497771550, guid: f6169e43ee44976489bec56c94f55d30, type: 3}
