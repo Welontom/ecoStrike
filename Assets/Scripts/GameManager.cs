@@ -94,9 +94,29 @@ public class GameManager : MonoBehaviour
     }
 
     // Atualiza o texto da mão
-    public void UpdateHand(string s) 
+    public void UpdateHand(string s,string cor) 
     { 
         handText.text = s;
+        if(cor == "branco") 
+        {
+            handText.color = Color.white;
+        }
+        else if (cor == "amarelo")
+        {
+            handText.color = Color.yellow;
+        }
+        else if (cor == "vermelho")
+        {
+            handText.color = Color.red;
+        }
+        else if (cor == "azul")
+        {
+            handText.color = Color.blue;
+        }
+        else if (cor == "verde")
+        {
+            handText.color = Color.green;
+        }
     }
 
     // Reduz a vida do chefão
