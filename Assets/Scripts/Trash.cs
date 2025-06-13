@@ -41,21 +41,21 @@ public class Trash : MonoBehaviour
             if (gameObject.CompareTag("vidro"))
             {
                 playerController.glass = true;
-                gameManager.UpdateHand("Mão: Vidro");
+                gameManager.UpdateHand("Mão: Vidro","verde");
             }
             if (gameObject.CompareTag("metal")) 
             {
-                gameManager.UpdateHand("Mão: Metal");
+                gameManager.UpdateHand("Mão: Metal","amarelo");
                 playerController.metal = true;
             }
             if (gameObject.CompareTag("papel"))
             {
-                gameManager.UpdateHand("Mão: Papel");
+                gameManager.UpdateHand("Mão: Papel","azul");
                 playerController.paper = true;
             }
             if (gameObject.CompareTag("plastico"))
             {
-                gameManager.UpdateHand("Mão: Plástico");
+                gameManager.UpdateHand("Mão: Plástico","vermelho");
                 playerController.plastic = true;
             }
             

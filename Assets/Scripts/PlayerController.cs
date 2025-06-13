@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     public void ResetarPlayer()
     {
         isHolding = false;
-        gameManager.UpdateHand("Mão vazia");
+        gameManager.UpdateHand("Mão vazia","branco");
         paper = metal = glass = plastic = false;
     }
 }
